@@ -1,3 +1,4 @@
+
 export interface SectionConfig {
   id: string;
   name: string;

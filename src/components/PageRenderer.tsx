@@ -125,12 +125,7 @@ export default function PageRenderer() {
   const { activeSection, activePage } = useSection();
 
   // Debug logging con tipos más seguros
-  console.log('Debug PageRenderer:', {
-    activeSection,
-    activePage,
-    hasCurrentContent: !!(activeSection && activePage && contentMap[activeSection as keyof typeof contentMap]),
-    currentContent: null // Simplificamos el logging por ahora
-  });
+  
 
   //Si no hay página activa, no mostrar nada (deja la página principal)
   if (!activePage) {
