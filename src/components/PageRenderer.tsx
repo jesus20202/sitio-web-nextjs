@@ -71,7 +71,8 @@ export default function PageRenderer() {
   }
 
   // Obtener el contenido de la página activa
-  const currentContent = contentMap[activeSection]?.[activePage];
+  const sectionContent = activeSection ? contentMap[activeSection as keyof typeof contentMap] : null;
+  const currentContent = sectionContent && activePage ? sectionContent[activePage as keyof typeof sectionContent] : null;
 
   // Si no hay contenido disponible, mostrar mensaje temporal
   if (!currentContent) {
