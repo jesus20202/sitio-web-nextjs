@@ -1,0 +1,1 @@
+export {contactGeneralContent} from './general'
