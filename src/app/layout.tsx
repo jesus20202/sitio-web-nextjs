@@ -4,8 +4,6 @@ import { TopBar } from "@/components/layout/TopBar";
 import { MainNavigation } from "@/components/layout/MainNavigation";
 import { SecondaryNavigation } from "@/components/layout/SecondaryNavigation";
 import { Footer } from "@/components/layout/Footer";
-import PageRenderer from "@/components/PageRenderer";
-import { useSection } from "@/hooks/useSection";
 import ContentWithDynamicPage from "@/components/ContentWithDynamicPage";
 import "./globals.css";
 

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useSection } from '@/hooks/useSection';
@@ -23,7 +24,73 @@ import { commanderyHistoryContent } from '@/content/history/commandery';
 import { foundingHistoryContent } from '@/content/history/founding';
 import { eventsHistoryContent } from '@/content/history/events';
 
+interface ImageType {
+  src: string;
+  alt: string;
+  label?: string;
+  img?: string;
+  caption?: string;
+}
 
+interface LinkType {
+  href: string;
+  text?: string;
+  label?: string;
+}
+
+interface ButtonType {
+  href: string;
+  text: string;
+  type: 'primary' | 'secondary';
+}
+
+interface CityType {
+  name: string;
+  organizations: string[];
+}
+
+interface ContactType {
+  title: string;
+  name: string;
+  role: string;
+  address: string;
+}
+
+interface FieldType {
+  label: string;
+  name: string;
+  type: string;
+}
+
+interface BookType {
+  img: string;
+  alt: string;
+}
+
+interface ResultType {
+  name: string;
+  address?: string;
+  meeting?: string;
+  moreInfo?: string;
+  distance?: string;
+  directions?: string;
+}
+
+interface OrganizationType {
+  name: string;
+}
+
+interface SectionType {
+  title: string;
+  organizations: OrganizationType[];
+}
+
+interface ItemType {
+  id?: string;
+  title: string;
+  href: string;
+  color?: string;
+}
 
 // Mapeo de contenido disponible por ahora
 const contentMap = {
@@ -57,12 +124,12 @@ const contentMap = {
 export default function PageRenderer() {
   const { activeSection, activePage } = useSection();
 
-  // Debug logging
+  // Debug logging con tipos más seguros
   console.log('Debug PageRenderer:', {
     activeSection,
     activePage,
-    hasCurrentContent: !!contentMap[activeSection]?.[activePage],
-    currentContent: contentMap[activeSection]?.[activePage]
+    hasCurrentContent: !!(activeSection && activePage && contentMap[activeSection as keyof typeof contentMap]),
+    currentContent: null // Simplificamos el logging por ahora
   });
 
   //Si no hay página activa, no mostrar nada (deja la página principal)
@@ -70,9 +137,9 @@ export default function PageRenderer() {
       return null;
   }
 
-  // Obtener el contenido de la página activa
-  const sectionContent = activeSection ? contentMap[activeSection as keyof typeof contentMap] : null;
-  const currentContent = sectionContent && activePage ? sectionContent[activePage as keyof typeof sectionContent] : null;
+  // Obtener el contenido de la página activa con verificación segura
+  const sectionContent = activeSection && contentMap[activeSection as keyof typeof contentMap];
+  const currentContent = sectionContent && activePage && (sectionContent as Record<string, unknown>)[activePage];
 
   // Si no hay contenido disponible, mostrar mensaje temporal
   if (!currentContent) {
@@ -96,13 +163,13 @@ export default function PageRenderer() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Título principal */}
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
-          {currentContent.title}
+          {(currentContent as { title: string }).title}
         </h1>
 
         {/* Renderizar imágenes si existen */}
-        {currentContent.images && (
+        {(currentContent as { images?: ImageType[] }).images && (
           <div className="flex justify-center items-center gap-8 mb-8 flex-wrap">
-            {currentContent.images.map((img: any) => (
+            {((currentContent as { images: ImageType[] }).images).map((img: ImageType) => (
               <div key={img.label} className="flex flex-col items-center">
                 <img src={img.src} alt={img.alt} className="w-40 h-40 object-contain mb-2" />
                 <span className="font-bold text-primary-blue text-lg text-center">{img.label}</span>
@@ -112,9 +179,9 @@ export default function PageRenderer() {
         )}
 
         {/* Renderizar links si existen */}
-        {currentContent.links && (
+        {(currentContent as { links?: LinkType[] }).links && (
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
-            {currentContent.links.map((link: any, idx: number) => (
+            {((currentContent as { links: LinkType[] }).links).map((link: LinkType, idx: number) => (
               <a
                 key={idx}
                 href={link.href}
@@ -127,11 +194,10 @@ export default function PageRenderer() {
             ))}
           </div>
         )}
-
         {/* Párrafos de contenido */}
-        {currentContent.paragraphs && (
+        {(currentContent as { paragraphs?: string[] }).paragraphs && (
           <div className="space-y-2 mb-12 text-center">
-            {currentContent.paragraphs.map((paragraph: string, index: number) =>
+            {((currentContent as { paragraphs: string[] }).paragraphs).map((paragraph: string, index: number) =>
               paragraph.trim() === "" ? <br key={index} /> : (
                 <p key={index} className="text-gray-700 text-lg leading-relaxed">
                   {paragraph}
@@ -143,7 +209,9 @@ export default function PageRenderer() {
 
         {currentContent === grandSessionsContent && (
           <div className="bg-white rounded shadow p-8 mb-12 max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">{currentContent.subtitle}</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              {(currentContent as { subtitle: string }).subtitle}
+            </h2>
             <div className="mb-4">{currentContent.description}</div>
             <div className="mb-4">
               <strong>2025 Grand Sessions Location:</strong>
@@ -180,7 +248,7 @@ export default function PageRenderer() {
             </div>
             <h3 className="text-xl font-bold mt-8 mb-4">Grand Sessions Program Books</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6">
-              {currentContent.books.map((book: any, idx: number) => (
+              {currentContent.books.map((book: BookType, idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
                   <img
                     src={book.img}
@@ -259,7 +327,7 @@ export default function PageRenderer() {
         {currentContent.cities && (
           <div className="bg-white rounded shadow p-6 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentContent.cities.map((city: any, idx: number) => (
+              {currentContent.cities.map((city: CityType, idx: number) => (
                 <div key={idx} className="border-l-4 border-purple-500 pl-4 py-2">
                   <h3 className="text-purple-700 font-semibold text-lg mb-2 underline">
                     {city.name}
@@ -280,7 +348,7 @@ export default function PageRenderer() {
         {/* Botones de acción */}
         {currentContent.buttons && (
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {currentContent.buttons.map((button: any, index: number) => (
+            {(currentContent.buttons as ButtonType[]).map((button: ButtonType, index: number) => (
               <a
                 key={index}
                 href={button.href}
@@ -300,7 +368,7 @@ export default function PageRenderer() {
         {/* Renderizar formulario si existe */}
         {currentContent === connectContent && (
           <form className="bg-white rounded shadow p-8 max-w-2xl mx-auto mb-8 text-left">
-            {currentContent.form.fields.map((field: any, idx: number) => (
+            {currentContent.form.fields.map((field: FieldType, idx: number) => (
               <div key={idx} className="mb-4">
                 <label className="block text-gray-700 mb-2">{field.label}</label>
                 <input
@@ -358,7 +426,7 @@ export default function PageRenderer() {
         {currentContent === formEventFormContent && (
         <form className="bg-white rounded shadow p-8 max-w-2xl mx-auto mb-8 text-left">
           {/* Campos básicos */}
-          {currentContent.form.fields.map((field: any, idx: number) => (
+          {currentContent.form.fields.map((field: FieldType, idx: number) => (
             <div key={idx} className="mb-4">
               <label className="block text-gray-700 mb-2">{field.label}</label>
               <input
@@ -485,7 +553,7 @@ export default function PageRenderer() {
         <h2 className="text-2xl font-bold mb-4">{currentContent.title}</h2>
         <p className="mb-6">{currentContent.description}</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {currentContent.contacts.map((contact: any, idx: number) => (
+          {currentContent.contacts.map((contact: ContactType, idx: number) => (
             <div key={idx}>
               <div className="font-bold">{contact.title}</div>
               <div>{contact.name}</div>
@@ -495,7 +563,7 @@ export default function PageRenderer() {
           ))}
         </div>
         <form>
-          {currentContent.form.fields.map((field: any, idx: number) => (
+          {currentContent.form.fields.map((field: FieldType, idx: number) => (
             <div key={idx} className="mb-4">
               <label className="block text-gray-700 mb-2">{field.label}</label>
               <input
@@ -539,7 +607,7 @@ export default function PageRenderer() {
             <div className="flex-1">
               <h1 className="text-3xl font-bold mb-6">{currentContent.title}</h1>
               <ul className="mb-6 space-y-2">
-                {currentContent.links.map((link: any, idx: number) => (
+                {currentContent.links.map((link: LinkType, idx: number) => (
                   <li key={idx}>
                     <a href={link.href} className="text-blue-700 hover:underline">{link.label}</a>
                   </li>
@@ -561,7 +629,7 @@ export default function PageRenderer() {
             <div className="flex-1">
               <h1 className="text-3xl font-bold mb-6">{currentContent.title}</h1>
               <ul className="mb-6 space-y-2">
-                {currentContent.links.map((link: any, idx: number) => (
+                {currentContent.links.map((link: LinkType, idx: number) => (
                   <li key={idx}>
                     <a href={link.href} className="text-blue-700 hover:underline">{link.label}</a>
                   </li>
@@ -583,7 +651,7 @@ export default function PageRenderer() {
             <h2 className="text-2xl font-bold mb-4">{currentContent.title}</h2>
             <p className="mb-6 text-gray-600">{currentContent.description}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {currentContent.items.map((item: any, idx: number) => (
+              {currentContent.items.map((item: ItemType, idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
                   <img
                     src={item.img}
@@ -602,7 +670,7 @@ export default function PageRenderer() {
             <div className="flex-1">
               <h1 className="text-3xl font-bold mb-6">{currentContent.title}</h1>
               <ul className="mb-6 space-y-2">
-                {currentContent.links.map((link: any, idx: number) => (
+                {currentContent.links.map((link: LinkType, idx: number) => (
                   <li key={idx}>
                     <a href={link.href} className="text-blue-700 hover:underline">{link.label}</a>
                   </li>
@@ -626,7 +694,7 @@ export default function PageRenderer() {
           <div className="bg-white rounded shadow p-8 mb-12 max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">{currentContent.title}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {currentContent.items.map((item: any, idx: number) => (
+              {currentContent.items.map((item: ItemType, idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
                   <img
                     src={item.img}
@@ -681,7 +749,7 @@ export default function PageRenderer() {
                 </form>
                 {/* Resultados de ejemplo */}
                 <div className="mt-6">
-                  {currentContent.locator.exampleResults.map((res: any, idx: number) => (
+                  {currentContent.locator.exampleResults.map((res: ResultType, idx: number) => (
                     <div key={idx} className="mb-4">
                       <a href="#" className="text-purple-800 underline font-semibold">{res.name}</a>
                       {res.address && <div className="text-sm text-gray-700">{res.address}</div>}
@@ -708,13 +776,13 @@ export default function PageRenderer() {
         {/* Renderizar secciones de organizaciones si existen */}
         {currentContent.sections && (
           <div className="space-y-12">
-            {currentContent.sections.map((section: any, sectionIdx: number) => (
+            {currentContent.sections.map((section: SectionType, sectionIdx: number) => (
               <div key={sectionIdx} className="text-center">
                 <h2 className="text-2xl font-bold text-gray-800 mb-8">
                   {section.title}
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-                  {section.organizations.map((org: any, orgIdx: number) => (
+                  {section.organizations.map((org: OrganizationType, orgIdx: number) => (
                     <div key={orgIdx} className="flex flex-col items-center">
                       <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mb-3">
                         <span className="text-xs text-center text-gray-600">
@@ -750,7 +818,7 @@ export default function PageRenderer() {
               {currentContent.furtherReading.title}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {currentContent.furtherReading.items.map((item: any) => (
+              {currentContent.furtherReading.items.map((item: ItemType) => (
                 <a
                   key={item.id}
                   href={item.href}

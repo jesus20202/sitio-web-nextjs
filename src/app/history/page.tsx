@@ -1,12 +1,10 @@
 'use client';
 
 import { useSection } from '@/hooks/useSection';
-import { useEffect } from 'react';
+
 
 export default function HistoryPage() {
-  const { setActiveSection, setActivePage } = useSection();
-
-  
+  const {} = useSection();
 
   return (
     <div className="bg-gray-100 min-h-screen py-16">
