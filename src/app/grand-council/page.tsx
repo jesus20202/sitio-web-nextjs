@@ -38,12 +38,12 @@ export default function GrandCouncilPage() {
               />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
-              Bienvenido al Rito York de California de la Francmasonería
+              Bienvenido al Rito York de Perú de la Francmasonería
             </h2>
             <h3 className="text-xl font-medium text-gray-700 text-center mb-8">
               y el
               <br />
-              Gran Consejo de Masones Crípticos de California
+              Gran Consejo de Masones Crípticos de Perú
             </h3>
             <p className="text-gray-700 mb-10 text-base leading-relaxed text-center max-w-5xl mx-auto">
               La Francmasonería es la organización fraternal más antigua y grande del mundo. El Rito York es un sistema de grados practicado principalmente en América para Maestros Masones que desean mayor conocimiento y experiencia en el arte de la Francmasonería. El Rito York crea significado más profundo y relaciones mientras examina las lecciones fundamentales enseñadas en la Francmasonería. Proporciona herramientas adicionales para ayudar a responder las preguntas: ¿Cuál es mi relación con Dios? ¿Cuál es mi relación con otras personas? ¿Cuál es mi propósito? Descubrimos, preservamos y defendemos los principios más verdaderos del tiempo.

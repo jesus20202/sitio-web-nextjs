@@ -1,7 +1,7 @@
 export const locatorContent = {
   title: "UBICACIONES",
   paragraphs: [
-    "Encuentra Capítulos, Consejos Crípticos y Comandancias de Caballeros Templarios en California. Utiliza el buscador para filtrar por ciudad, código postal o categoría."
+    "Encuentra Capítulos, Crípticos y Comandancias de Caballería Templaria en Perú. Utiliza el buscador para filtrar por ciudad, código postal o categoría."
   ],
   locator: {
     filters: {
@@ -35,6 +35,6 @@ export const locatorContent = {
   },
   map: {
     image: "/mapa.png",
-    alt: "Mapa de ubicaciones York Rite en California"
+    alt: "Mapa de ubicaciones Rito York de Perú"
   }
 };

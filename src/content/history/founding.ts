@@ -1,5 +1,5 @@
 export const foundingHistoryContent = {
-  title: "Joyas de Malta de California",
+  title: "Joyas de Malta de Perú",
   description: "Archivo fotográfico en preparación, en desarrollo.",
   items: [
     { img: "/malta-jewels/jewel1.jpg", alt: "Joya de Malta 1" },

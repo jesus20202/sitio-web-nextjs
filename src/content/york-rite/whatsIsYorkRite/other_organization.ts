@@ -5,15 +5,15 @@ export const otherOrganizationsContent = {
   ],
   sections: [
     {
-      title: "Gran Logia de California",
+      title: "Gran Logia de Perú",
       organizations: [
-        { name: "Gran Logia de California", logo: "/logos/grand-lodge-ca.png" }
+        { name: "Gran Logia de Perú", logo: "/logos/grand-lodge-ca.png" }
       ]
     },
     {
-      title: "Rito de York de California",
+      title: "Rito York de Perú",
       organizations: [
-        { name: "Gran Capítulo", logo: "/logos/grand-chapter.png" },
+        { name: "Capítulo", logo: "/logos/grand-chapter.png" },
         { name: "Gran Consejo", logo: "/logos/grand-council.png" }
       ]
     },

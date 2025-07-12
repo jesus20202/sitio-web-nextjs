@@ -1,5 +1,5 @@
 export const eventsHistoryContent = {
-  title: "Medallas Trienales de California",
+  title: "Medallas Trienales de Perú",
   description: "Archivo fotográfico en preparación, en desarrollo.",
   items: [
     { img: "/triennial-medals/medal1.jpg", alt: "Medalla Trienal 1" },

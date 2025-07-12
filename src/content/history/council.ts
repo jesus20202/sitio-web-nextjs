@@ -9,6 +9,6 @@ export const councilHistoryContent = {
   ],
   image: {
     src: "/council-logo.png",
-    alt: "Gran Consejo de Masones Crípticos de California"
+    alt: "Gran Consejo de Masones Crípticos de Perú"
   }
 };

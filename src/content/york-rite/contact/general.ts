@@ -4,19 +4,19 @@ export const contactGeneralContent = {
   description: "Si tienes preguntas sobre nuestra organización, membresía o historia de algún miembro de familia, por favor escribe a uno de nuestros Secretarios Generales listados abajo o completa el formulario de contacto.",
   contacts: [
     {
-      title: "Gran Capítulo Masones del Real Arco de California",
+      title: "Gran Capítulo Masones del Real Arco de Perú",
       name: "Richard W. Bullard",
       role: "Gran Secretario",
       address: "8015 La Mesa Blvd, Suite 1, La Mesa, CA 91942-0630"
     },
     {
-      title: "Gran Consejo Masones Crípticos de California",
+      title: "Gran Consejo Masones Crípticos de Perú",
       name: "Philip Hardiman",
       role: "Gran Registrador",
       address: "1123 J St, Sacramento, CA 95814-2809"
     },
     {
-      title: "Gran Comandancia Caballeros Templarios de California",
+      title: "Gran Comandancia Caballería Templaria de Perú",
       name: "Howard W. 'Bud' Ramsey Jr.",
       role: "Gran Registrador",
       address: "2460 N. Murrieta Blvd, Livermore, CA 94551-8855"

@@ -1,31 +1,31 @@
 export const historyContent = {
-  title: "Historical Information",
+  title: "Información Histórica",
   images: [
-    { src: "/images/chapter-logo.png", alt: "Grand Chapter", label: "GRAND CHAPTER" },
-    { src: "/images/council-logo.png", alt: "Grand Council", label: "GRAND COUNCIL" },
-    { src: "/images/commandery-logo.png", alt: "Grand Commandery", label: "GRAND COMMANDERY" }
+    { src: "/images/chapter-logo.png", alt: "Gran Capítulo", label: "GRAN CAPÍTULO" },
+    { src: "/images/council-logo.png", alt: "Gran Consejo", label: "GRAN CONSEJO" },
+    { src: "/images/commandery-logo.png", alt: "Gran Comandancia", label: "GRAN COMANDANCIA" }
   ],
   links: [
-    { text: "Masonic Dignitaries State of California (PDF)", href: "#" },
-    { text: "One Man Can Make a Difference (PDF)", href: "#" }
+    { text: "Dignatarios Masones del Perú (PDF)", href: "#" },
+    { text: "Un Hombre Puede Hacer la Diferencia (PDF)", href: "#" }
   ],
   paragraphs: [
-    "Contents & information contained in the California Grand York Rite Historical Information are dedicated to the following:",
+    "Los contenidos e información contenidos en la Información Histórica del Gran Rito York de Perú están dedicados a lo siguiente:",
     "",
-    "Most Excellent Companion",
+    "Muy Excelente Compañero",
     "Kenneth G. Hope",
     "",
-    "Distinguished Service Award – Silver",
-    "Distinguished Service Award – Bronze",
-    "Knight York Cross of Honour",
-    "Knight Commander of the Temple",
-    "Honorary Past Grand High Priest",
-    "Honorary Illustrious Past Grand Master",
-    "Honorary Past Grand Commander",
-    "Past Grand Secretary Grand Chapter Royal Arch Masons of California",
-    "Past Grand Recorder Grand Council Cryptic Masons of California",
-    "Past Grand Recorder Grand Commandery Knights Templar of California",
+    "Premio al Servicio Distinguido – Plata",
+    "Premio al Servicio Distinguido – Bronce",
+    "Caballero de la Cruz York de Honor",
+    "Caballero Comandante del Templo",
+    "Honorario Pasado Gran Sumo Sacerdote",
+    "Honorario Ilustre Maestro Pasado",
+    "Honorario Pasado Gran Comandante",
+    "Ex-Gran Secretario del Gran Capítulo Masones del Arco Real de California",
+    "Ex-Gran Registrador del Gran Consejo Masones Crípticos de California",
+    "Ex-Gran Registrador de la Gran Comandancia Caballeros Templarios de California",
     "",
-    "Through devotion, love, dedication, and countless hours of research, Ken documented the following historical information:"
+    "A través de devoción, amor, dedicación y un sinfín de horas de investigación, Ken documentó la siguiente información histórica:"
   ]
 };

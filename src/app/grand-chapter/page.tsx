@@ -48,7 +48,7 @@ export default function GrandChapterPage() {
               />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
-              Bienvenido al Rito de York de la Masonería de California
+              Bienvenido al Rito York de la Masonería de Perú
             </h2>
             <h3 className="text-xl font-medium text-gray-700 text-center mb-8">
               y al
@@ -57,9 +57,9 @@ export default function GrandChapterPage() {
             </h3>
             <p className="text-gray-700 mb-10 text-base leading-relaxed text-center max-w-5xl mx-auto">
               La Masonería es la organización fraternal más antigua y grande del
-              mundo. El Rito de York es un sistema de grados practicado
+              mundo. El Rito York es un sistema de grados practicado
               principalmente en América para los Maestros Masones que desean más
-              conocimiento y experiencia en el arte de la Masonería. El Rito de
+              conocimiento y experiencia en el arte de la Masonería. El Rito
               York genera un significado y relaciones más profundos mientras
               examina las lecciones fundamentales enseñadas en la Masonería.
               Proporciona herramientas adicionales para ayudar a responder las

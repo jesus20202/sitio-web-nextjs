@@ -15,8 +15,8 @@ export const connectContent = {
       options: [
         "Masonería",
         "Real Arco",
-        "Consejo Críptico",
-        "Caballeros Templarios",
+        "Crípticos",
+        "Caballería Templaria",
         "Otro"
       ]
     },

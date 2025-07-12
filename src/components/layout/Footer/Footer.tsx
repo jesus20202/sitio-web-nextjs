@@ -14,7 +14,7 @@ export default function Footer() {
                 Masones del Real Arco
               </h4>
               <div className="flex items-center justify-center mx-auto mb-4">
-                <img src="images/logos/logo1.png" alt="Gran Capítulo" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
+                <img src="/images/logos/logo1.png" alt="Gran Capítulo" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
               </div>
             </div>
 
@@ -27,7 +27,7 @@ export default function Footer() {
                 Masones Crípticos
               </h4>
               <div className="flex items-center justify-center mx-auto mb-4">
-                <img src="images/logos/logo2.png" alt="Gran Consejo" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
+                <img src="/images/logos/logo2.png" alt="Gran Consejo" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
               </div>
             </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
                 Caballeros Templarios
               </h4>
               <div className="flex items-center justify-center mx-auto mb-4">
-                <img src="images/logos/logo3.png" alt="Gran Comandancia" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
+                <img src="/images/logos/logo3.png" alt="Gran Comandancia" className="w-32 h-32 mx-auto object-contain bg-white rounded-full" />
               </div>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-white mb-4 md:mb-0">
-              © 2024 | Gran Rito de York de California
+              © 2024 | Gran Rito York de Perú
             </div>
             <div className="flex space-x-6">
               <a href="#" className="text-white hover:text-accent-gold text-sm uppercase transition-colors">Acerca de</a>

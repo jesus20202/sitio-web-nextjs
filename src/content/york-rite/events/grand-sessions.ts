@@ -1,7 +1,7 @@
 export const grandSessionsContent = {
-  title: "SESIONES DEL GRAN YORK RITE",
+  title: "SESIONES DEL RITO YORK",
   subtitle: "Sesiones 2025",
-  description: "Las Sesiones Anuales 2025 del Gran York Rite de California se llevarán a cabo del 15 al 20 de mayo de 2025.",
+  description: "Las Sesiones Anuales 2025 del Rito York de Perú se llevarán a cabo del 15 al 20 de mayo de 2025.",
   location2025: {
     name: "San Ramon Marriott",
     address: [

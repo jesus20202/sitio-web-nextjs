@@ -10,6 +10,6 @@ export const chapterHistoryContent = {
   ],
   image: {
     src: "/chapter-logo.png",
-    alt: "Gran Capítulo de Masones del Arco Real de California"
+    alt: "Gran Capítulo de Masones del Arco Real de Perú"
   }
 };

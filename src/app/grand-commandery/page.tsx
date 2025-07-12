@@ -38,12 +38,12 @@ export default function GrandCommanderyPage() {
               />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
-              Bienvenido al Rito York de California de la Francmasonería
+              Bienvenido al Rito York de Perú de la Francmasonería
             </h2>
             <h3 className="text-xl font-medium text-gray-700 text-center mb-8">
               y
               <br />
-              Gran Comandancia de Caballeros Templarios de California
+              Gran Comandancia de Caballería Templaria de Perú
             </h3>
 
             {/* Vision and Mission Statements */}
@@ -104,7 +104,7 @@ export default function GrandCommanderyPage() {
             {/* Strategic Plan Link */}
             <div className="text-center mb-12">
               <a href="#" className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded font-semibold text-sm transition">
-                Gran Comandancia de California-Plan Estratégico 2023-2025
+                Gran Comandancia de Perú-Plan Estratégico 2023-2025
               </a>
             </div>
 

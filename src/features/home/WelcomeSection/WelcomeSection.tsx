@@ -7,7 +7,7 @@ export default function WelcomeSection() {
         {/* Título centrado */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-blue mb-4">
-            Bienvenidos al Rito de York de la Masonería en California
+            Bienvenidos al Rito York de la Masonería en Perú
           </h2>
         </div>
 
@@ -17,11 +17,11 @@ export default function WelcomeSection() {
           <div>
             <div className="space-y-4 text-base leading-relaxed text-gray-700 mb-8">
               <p>
-                La masonería es la organización fraternal más antigua y grande del mundo. El Rito de York es un sistema de grados practicado principalmente en América para los Maestros Masones que desean adquirir mayor conocimiento y experiencia en el arte de la masonería.
+                La masonería es la organización fraternal más antigua y grande del mundo. El Rito York es un sistema de grados practicado principalmente en América para los Maestros Masones que desean adquirir mayor conocimiento y experiencia en el arte de la masonería.
               </p>
               
               <p>
-                El Rito de York genera un significado más profundo y relaciones más estrechas, mientras examina las lecciones fundamentales que enseña la masonería. Proporciona herramientas adicionales para ayudar a responder las preguntas: ¿Cuál es mi relación con Dios? ¿Cuál es mi relación con los demás? ¿Cuál es mi propósito?
+                El Rito York genera un significado más profundo y relaciones más estrechas, mientras examina las lecciones fundamentales que enseña la masonería. Proporciona herramientas adicionales para ayudar a responder las preguntas: ¿Cuál es mi relación con Dios? ¿Cuál es mi relación con los demás? ¿Cuál es mi propósito?
               </p>
               
               <p>
@@ -31,7 +31,7 @@ export default function WelcomeSection() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="primary" className="px-6 py-3">
-                ¿Qué es el Rito de York?
+                ¿Qué es el Rito York?
               </Button>
               <Button variant="secondary" className="px-6 py-3">
                 Solicitar Información
@@ -59,7 +59,7 @@ export default function WelcomeSection() {
             </div>
             
             <p className="text-sm text-gray-600 leading-tight">
-              Emblemas del Rito de York<br />
+              Emblemas del Rito York<br />
               <span className="text-xs">Capítulo del Real Arco • Consejo Críptico • Caballeros Templarios</span>
             </p>
           </div>
