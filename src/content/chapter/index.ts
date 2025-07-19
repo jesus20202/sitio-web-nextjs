@@ -1,0 +1,1 @@
+export { royalArchContent } from './royal-arch';

@@ -24,20 +24,7 @@ export default function GrandChapterPage() {
             <h2 className="text-xl md:text-2xl font-medium mb-8 drop-shadow-lg tracking-wide">
               DESCUBRE EL RITO CAPITULAR Y EL SANTO REAL ARCO
             </h2>
-            <div className="flex gap-4 justify-center">
-              <a
-                href="#"
-                className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded font-semibold text-sm transition"
-              >
-                MÁS INFORMACIÓN
-              </a>
-              <a
-                href="#"
-                className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded font-semibold text-sm transition"
-              >
-                ENCUENTRA UN CAPÍTULO
-              </a>
-            </div>
+            
           </div>
         </div>
 

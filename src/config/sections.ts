@@ -83,7 +83,7 @@ export const sectionConfigs: Record<string, SectionConfig> = {
       {
         label: '¿QUE ES EL REAL ARCO?',
         items: [
-          { label: '¿QUE ES EL REAL ARCO?', href: '/chapter/question' },
+          { label: '¿QUE ES EL REAL ARCO?', href: '/chapter/royal-arch' },
           { label: 'CONÉCTATE CON UN CAPÍTULO', href: '/chapter/connect' },
           //{ label: 'LOCALIZADOR DE CAPÍTULOS', href: '/chapter/locator' },
           {label: 'EDUCACIÓN DEL REAL ARCO',href:'/chapter/education'}

@@ -8,7 +8,6 @@ export default function OrganizationsSection() {
   return (
     <section className="bg-gray-light py-20 px-5">
       <div className="max-w-7xl mx-auto">
-        
         {/* Sección de Búsqueda */}
         <div className="text-center mb-20">
           <h2 className="text-3xl font-bold text-primary-blue mb-10">
@@ -39,9 +38,7 @@ export default function OrganizationsSection() {
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
             {memberOrganizations.map((org) => (
               <div key={org.id} className="flex flex-col items-center">
-                <div className="w-28 h-28 md:w-32 md:h-32 bg-white border-4 border-gray-300 rounded-full flex items-center justify-center text-xs text-gray-600 mb-3 shadow-md">
-                  LOGO
-                </div>
+                <img src={org.logo} alt={org.name} className="w-40 h-40 object-contain mb-2" />
                 <span className="text-sm text-gray-700 max-w-[120px] text-center leading-tight font-medium">
                   {org.name}
                 </span>
@@ -58,12 +55,8 @@ export default function OrganizationsSection() {
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
             {supportingOrganizations.map((org) => (
               <div key={org.id} className="flex flex-col items-center">
-                <div className="w-28 h-28 md:w-32 md:h-32 bg-white border-4 border-gray-300 rounded-full flex items-center justify-center text-xs text-gray-600 mb-3 shadow-md">
-                  LOGO
-                </div>
-                <span className="text-sm text-gray-700 max-w-[140px] text-center leading-tight font-medium">
-                  {org.name}
-                </span>
+                <img src={org.logo} alt={org.name} className="w-40 h-40 object-contain mb-2" />
+                
               </div>
             ))}
           </div>

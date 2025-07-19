@@ -25,6 +25,7 @@ const hrefToPageId: Record<string, string> = {
   '/history/commandery': 'commandery',
   '/history/founding': 'founding',
   '/history/events': 'events',
+  '/chapter/royal-arch': 'royal-arch'
 };
 
 export default function SecondaryNavigation() {

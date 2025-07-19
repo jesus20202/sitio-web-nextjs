@@ -5,25 +5,25 @@ export default function GrandCommanderyPage() {
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-full">
         {/* Hero Section */}
-        <div className="relative mb-0">
-          <div className="w-full h-80 overflow-hidden">
-            <img
-              src="/hero-templar.jpg"
-              alt="Knights Templar Hero"
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/50">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-lg tracking-wide">
+        <div
+          className="relative h-[500px] flex items-center justify-center text-center overflow-hidden"
+          style={{
+            backgroundImage: 'url("/images/heroes/fondo.jpeg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center bottom',
+            backgroundColor: '#000'
+          }}
+        >
+          {/* Overlay oscuro para mejor legibilidad */}
+          <div className="absolute inset-0 bg-black/50 z-5"></div>
+          {/* Contenido */}
+          <div className="relative z-10 w-full flex flex-col items-center justify-center text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg tracking-wide">
               ¿DEFENDERÁS LA VERDADERA PALABRA Y LO QUE ES JUSTO?
             </h1>
             <h2 className="text-xl md:text-2xl font-medium mb-8 drop-shadow-lg tracking-wide">
               DESCUBRE LAS ÓRDENES TEMPLARIAS
             </h2>
-            <div className="flex gap-4 justify-center">
-              <a href="#" className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded font-semibold text-sm transition">APRENDE MÁS</a>
-              <a href="#" className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded font-semibold text-sm transition">ENCUENTRA UNA COMANDANCIA</a>
-            </div>
           </div>
         </div>
 

@@ -23,6 +23,7 @@ import { councilHistoryContent } from '@/content/history/council';
 import { commanderyHistoryContent } from '@/content/history/commandery';
 import { foundingHistoryContent } from '@/content/history/founding';
 import { eventsHistoryContent } from '@/content/history/events';
+import { royalArchContent } from '@/content/chapter/royal-arch';
 
 interface ImageType {
   src: string;
@@ -117,24 +118,34 @@ const contentMap = {
     'commandery': commanderyHistoryContent,
     'founding': foundingHistoryContent,
     'events': eventsHistoryContent
+  },
+  'chapter': {
+    'royal-arch': royalArchContent
   }
+
+  
   
 };
+
+
 
 export default function PageRenderer() {
   const { activeSection, activePage } = useSection();
 
   // Debug logging con tipos más seguros
-  
+  console.log('PageRenderer:', { activeSection, activePage });
 
   //Si no hay página activa, no mostrar nada (deja la página principal)
   if (!activePage) {
       return null;
   }
 
+  
+
   // Obtener el contenido de la página activa con verificación segura
   const sectionContent = activeSection && contentMap[activeSection as keyof typeof contentMap];
   const currentContent = sectionContent && activePage && (sectionContent as Record<string, unknown>)[activePage];
+  console.log('currentContent:', currentContent);
 
   // Si no hay contenido disponible, mostrar mensaje temporal
   if (!currentContent) {
@@ -794,6 +805,51 @@ export default function PageRenderer() {
             ))}
           </div>
         )}
+
+        
+        {currentContent === royalArchContent && currentContent && (
+        <div className="bg-white rounded shadow p-8 max-w-4xl mx-auto mb-12">
+          <h1 className="text-3xl font-bold mb-6">{currentContent.title}</h1>
+          
+          {/* Solo renderiza si paragraphs existe y es un array */}
+          {currentContent.paragraphs && Array.isArray(currentContent.paragraphs) && currentContent.paragraphs.length > 0 && (
+            <div className="space-y-4 mb-8">
+              {currentContent.paragraphs.map((paragraph: string, idx: number) => (
+                <p key={idx} className="text-gray-700 text-lg leading-relaxed">{paragraph}</p>
+              ))}
+            </div>
+          )}
+          
+          {/* Solo renderiza si sections existe y es un array */}
+          {currentContent.sections && Array.isArray(currentContent.sections) && currentContent.sections.length > 0 && (
+            <>
+              {currentContent.sections.map((section: any, idx: number) => (
+                <div key={idx} className="mb-12">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">{section.title}</h2>
+                  <p className="text-gray-700 text-lg leading-relaxed mb-4">{section.description}</p>
+                  {section.image && (
+                    <div className="flex justify-center">
+                      <img src={section.image.src} alt={section.image.alt} className="w-40 h-40 object-contain" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </>
+          )}
+          
+          {/* Solo renderiza si footer y footer.items existen */}
+          {currentContent.footer && currentContent.footer.items && Array.isArray(currentContent.footer.items) && currentContent.footer.items.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">{currentContent.footer.title}</h2>
+              <div className="flex justify-center gap-6">
+                {currentContent.footer.items.map((item: any, idx: number) => (
+                  <img key={idx} src={item.src} alt={item.alt} className="w-24 h-24 object-contain" />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
         {/* Footer especial para organizaciones */}
         {currentContent.footer && (
