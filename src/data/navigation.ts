@@ -1,6 +1,6 @@
 export const mainNavigation = [
   { id: 'york-rite', label: 'GRAN RITO DE YORK', href: '/', active: true },
-  { id: 'chapter', label: 'GRAN CAPÍTULO', href: '/grand-chapter' },
+  { id: 'chapter', label: 'GRAN CAPÍTULO', href: '/chapter' },
   { id: 'council', label: 'GRAN CONSEJO', href: '/grand-council' },
   { id: 'commandery', label: 'GRAN COMANDANCIA', href: '/grand-commandery' },
   { id: 'history', label: 'HISTORIA', href: '/history' },

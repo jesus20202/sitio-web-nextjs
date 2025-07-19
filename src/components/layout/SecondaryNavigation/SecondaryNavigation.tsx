@@ -2,31 +2,9 @@
 
 import { useState } from 'react';
 import { useSection } from '@/hooks/useSection';
+import { hrefToPageId } from '@/config/pageMap';
 
-const hrefToPageId: Record<string, string> = {
-  '/about/overview': 'overview',
-  '/about/royal-arch': 'history',
-  '/about/cryptic': 'connect',
-  '/about/knights-templar': 'locator',
-  '/about/requirements': 'other-organizations',
-  '/locations/chapters': 'locator',  
-  '/locations/cities': 'cities',
-  '/events/calendar': 'calendar',
-  '/events/officers-conference': 'officers-conference',
-  '/events/grand-sessions': 'grand-sessions',
-  '/events/form-event': 'form-event',
-  '/news/newsContent': 'newsContent',
-  '/news/workman': 'workman',
-  '/news/swordtrowel': 'swordtrowel',
-  '/news/crosscrown': 'crosscrown',
-  '/contact/general': 'general',
-  '/history/chapter': 'chapter',
-  '/history/council': 'council',
-  '/history/commandery': 'commandery',
-  '/history/founding': 'founding',
-  '/history/events': 'events',
-  '/chapter/royal-arch': 'royal-arch'
-};
+
 
 export default function SecondaryNavigation() {
   const { currentConfig, setActivePage } = useSection();

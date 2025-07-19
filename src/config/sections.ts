@@ -92,7 +92,7 @@ export const sectionConfigs: Record<string, SectionConfig> = {
       {
         label: 'LIDERAZGO',
         items: [
-          { label: 'BIOGRAFIA DEL GRAN SUMO SACERDOTE', href: '/chapter/degrees/biografia' },
+          { label: 'BIOGRAFIA DEL GRAN SUMO SACERDOTE', href: '/chapter/biografia' },
           { label: 'GRANDES OFICIALES', href: '/chapter/degrees/oficiales' },
           { label: 'OFICIALES DEL DEPARTAMENTO', href: '/chapter/degrees/departamento' },
           { label: 'COMITÉS', href: '/chapter/degrees/comites' },
@@ -101,6 +101,7 @@ export const sectionConfigs: Record<string, SectionConfig> = {
       },
       {
         label: 'UBICACIONES',
+        href: '/chapter/locator',
         
       },
       {
@@ -130,7 +131,7 @@ export const sectionConfigs: Record<string, SectionConfig> = {
       {
         label: '¿POR QUÉ CRYPTIC?',
         items: [
-          { label: '¿POR QUÉ CRYPTIC?', href: '/council/find' },
+          { label: '¿POR QUÉ CRYPTIC?', href: '/council/criptic' },
           { label: 'CONÉCTESE CON UN CONSEJO', href: '/council/list' },
           //{ label: 'LOCALIZADOR DE CONSEJOS', href: '/council/new' },
           { label: 'EDUCACIÓN CRÍPTICA', href: '/council/new' }

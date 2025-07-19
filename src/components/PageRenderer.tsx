@@ -24,6 +24,11 @@ import { commanderyHistoryContent } from '@/content/history/commandery';
 import { foundingHistoryContent } from '@/content/history/founding';
 import { eventsHistoryContent } from '@/content/history/events';
 import { royalArchContent } from '@/content/chapter/royal-arch';
+import { chapterConnectContent } from '@/content/chapter/connect';
+import { chapterEducationContent } from '@/content/chapter/education';
+import { biografiaSumoSacerdoteContent } from '@/content/chapter/biografia';
+import { cripticContent } from '@/content/council/criptic';
+
 
 interface ImageType {
   src: string;
@@ -94,62 +99,56 @@ interface ItemType {
 }
 
 // Mapeo de contenido disponible por ahora
-const contentMap = {
-  'york-rite': {
-    'overview': overviewContent,
-    'history': historyContent,
-    'connect': connectContent,
-    'locator': locatorContent,
-    'other-organizations': otherOrganizationsContent,
-    'cities': citiesContent,
-    'calendar': calendarContent,
-    'officers-conference': officersConferenceContent,
-    'grand-sessions': grandSessionsContent,
-    'form-event': formEventFormContent,
-    'newsContent': newsContent,
-    'workman': workmanContent,
-    'swordtrowel': swordtrowelContent,
-    'crosscrown': crosscrownContent,
-    'general': contactGeneralContent
-  },
-  'history': {
-    'chapter': chapterHistoryContent,
-    'council': councilHistoryContent,
-    'commandery': commanderyHistoryContent,
-    'founding': foundingHistoryContent,
-    'events': eventsHistoryContent
-  },
-  'chapter': {
-    'royal-arch': royalArchContent
-  }
-
-  
-  
+const contentMap: Record<string, any> = {
+  overview: overviewContent,
+  history: historyContent,
+  connect: connectContent,
+  locator: locatorContent,
+  otherOrganizations: otherOrganizationsContent,
+  cities: citiesContent,
+  calendar: calendarContent,
+  officersConference: officersConferenceContent, 
+  grandSessions: grandSessionsContent, 
+  formEvent: formEventFormContent, 
+  news: newsContent, 
+  workman: workmanContent,
+  swordTrowel: swordtrowelContent, 
+  crossCrown: crosscrownContent, 
+  general: contactGeneralContent,
+  chapter: chapterHistoryContent,
+  council: councilHistoryContent,
+  commandery: commanderyHistoryContent,
+  founding: foundingHistoryContent,
+  events: eventsHistoryContent,
+  royalArch: royalArchContent,
+  chapterConnect: chapterConnectContent,
+  chapterEducation: chapterEducationContent,
+  biografia: biografiaSumoSacerdoteContent,
+  locator: locatorContent,
+  criptic: cripticContent,
 };
 
 
 
 export default function PageRenderer() {
-  const { activeSection, activePage } = useSection();
+  const {activePage} = useSection();
 
   // Debug logging con tipos más seguros
-  console.log('PageRenderer:', { activeSection, activePage });
+  
 
   //Si no hay página activa, no mostrar nada (deja la página principal)
   if (!activePage) {
       return null;
   }
 
-  
 
   // Obtener el contenido de la página activa con verificación segura
-  const sectionContent = activeSection && contentMap[activeSection as keyof typeof contentMap];
-  const currentContent = sectionContent && activePage && (sectionContent as Record<string, unknown>)[activePage];
+  const currentContent = contentMap[activePage];
+
   console.log('currentContent:', currentContent);
 
   // Si no hay contenido disponible, mostrar mensaje temporal
   if (!currentContent) {
-    console.log('No content found for:', activeSection, activePage);
     return (
       <div className="bg-gray-100 min-h-screen py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -167,11 +166,10 @@ export default function PageRenderer() {
   return (
     <div className="bg-gray-100 min-h-screen py-16">
       <div className="max-w-4xl mx-auto px-6">
-        {/* Título principal */}
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
-          {(currentContent as { title: string }).title}
-        </h1>
-
+        
+        {!(currentContent === cripticContent ||
+   currentContent === royalArchContent ) && (
+  <>
         {/* Renderizar imágenes si existen */}
         {(currentContent as { images?: ImageType[] }).images && (
           <div className="flex justify-center items-center gap-8 mb-8 flex-wrap">
@@ -200,18 +198,70 @@ export default function PageRenderer() {
             ))}
           </div>
         )}
-        {/* Párrafos de contenido */}
-        {(currentContent as { paragraphs?: string[] }).paragraphs && (
-          <div className="space-y-2 mb-12 text-center">
-            {((currentContent as { paragraphs: string[] }).paragraphs).map((paragraph: string, index: number) =>
-              paragraph.trim() === "" ? <br key={index} /> : (
-                <p key={index} className="text-gray-700 text-lg leading-relaxed">
-                  {paragraph}
-                </p>
-              )
-            )}
+
+        {/* Renderizar secciones de organizaciones si existen */}
+        {currentContent.sections &&
+          Array.isArray(currentContent.sections) &&
+          currentContent.sections.length > 0 &&
+          currentContent.sections[0].organizations
+          ? (
+            <div className="space-y-12">
+              {currentContent.sections.map((section: SectionType, sectionIdx: number) => (
+                <div key={sectionIdx} className="text-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-8">
+                    {section.title}
+                  </h2>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+                    {section.organizations.map((org: OrganizationType, orgIdx: number) => (
+                      <div key={orgIdx} className="flex flex-col items-center">
+                        <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mb-3">
+                          <span className="text-xs text-center text-gray-600">
+                            LOGO
+                          </span>
+                        </div>
+                        <span className="text-sm text-gray-700 text-center max-w-[120px] leading-tight">
+                          {org.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null
+        }
+
+        {/* Footer especial para organizaciones */}
+        {currentContent.footer && (
+          <div className="text-center mt-16">
+            <div className="w-32 h-32 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mx-auto">
+              <span className="text-xs text-center text-gray-600">
+                SÍMBOLO<br/>MASÓNICO
+              </span>
+            </div>
           </div>
         )}
+      </>
+    )}
+
+      {(activePage === 'overview' || activePage === 'connect') && (
+  <>
+    <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+      {currentContent.title}
+    </h1>
+    {Array.isArray(currentContent.paragraphs) && (
+      <div className="space-y-4 mb-8 text-center">
+        {currentContent.paragraphs.map((paragraph: string, idx: number) =>
+          paragraph.trim() === "" ? <br key={idx} /> : (
+            <p key={idx} className="text-gray-700 text-base leading-relaxed">{paragraph}</p>
+          )
+        )}
+      </div>
+    )}
+  </>
+)}
+        
+        
 
         {currentContent === grandSessionsContent && (
           <div className="bg-white rounded shadow p-8 mb-12 max-w-3xl mx-auto">
@@ -369,6 +419,33 @@ export default function PageRenderer() {
             ))}
           </div>
         )}
+
+        {currentContent === biografiaSumoSacerdoteContent && (
+        <div className="bg-white rounded shadow p-8 max-w-3xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold mb-6">{currentContent.title}</h2>
+          <div className="flex flex-col md:flex-row gap-8 mb-6 items-start">
+            <div className="flex-1 flex justify-center mb-4 md:mb-0">
+              <img
+                src={currentContent.image.src}
+                alt={currentContent.image.alt}
+                className="w-64 h-auto object-contain rounded shadow"
+              />
+            </div>
+            <div className="flex-1">
+              <ul className="mb-4 list-none pl-0">
+                {currentContent.highlights.map((hl: string, idx: number) => (
+                  <li key={idx} className="text-gray-700 text-base">{hl}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="space-y-4 text-gray-700 text-base leading-relaxed">
+            {currentContent.paragraphs.map((p: string, idx: number) => (
+              <p key={idx}>{p}</p>
+            ))}
+          </div>
+        </div>
+      )}
 
                 
         {/* Renderizar formulario si existe */}
@@ -597,6 +674,54 @@ export default function PageRenderer() {
       </div>
     )}
 
+      {currentContent === chapterConnectContent && (
+          <div className="bg-white rounded shadow p-8 max-w-3xl mx-auto mb-12">
+            <h2 className="text-2xl font-bold mb-4">{currentContent.title}</h2>
+            <p className="mb-6">{currentContent.description}</p>
+            <form>
+              {currentContent.form.fields.map((field: FieldType, idx: number) => (
+                <div key={idx} className="mb-4">
+                  <label className="block text-gray-700 mb-2">{field.label}</label>
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                  />
+                </div>
+              ))}
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">{currentContent.form.subject.label}</label>
+                <div className="flex gap-4">
+                  {currentContent.form.subject.options.map((opt: string, idx: number) => (
+                    <label key={idx} className="inline-flex items-center">
+                      <input type="radio" className="mr-2" name="subject" value={opt} defaultChecked={idx === 0} />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">{currentContent.form.message.label}</label>
+                <textarea
+                  name={currentContent.form.message.name}
+                  className="w-full border border-gray-300 rounded px-3 py-2 min-h-[120px]"
+                />
+              </div>
+              <button
+                type="submit"
+                className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700 transition"
+              >
+                {currentContent.form.submit}
+              </button>
+            </form>
+            
+          </div>
+        )}
+
+
+
+
+
         {/* Renderizar aviso de reCAPTCHA si existe */}
         {currentContent.recaptcha && (
           <div className="text-xs text-gray-500 mt-2 text-center">
@@ -670,6 +795,93 @@ export default function PageRenderer() {
           </div>
         )}
 
+        {currentContent === chapterEducationContent && (
+        <div className="bg-white rounded shadow p-8 max-w-5xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold mb-4">{currentContent.title}</h2>
+          <div className="mb-8 text-gray-700">{currentContent.subtitle}</div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-gray-300 text-sm">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-2 px-4 border-b border-gray-300 text-left font-semibold">Título</th>
+                  <th className="py-2 px-4 border-b border-gray-300 text-left font-semibold">Autores</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentContent.table.map((row: { title: string; author: string }, idx: number) => (
+                  <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                    <td className="py-2 px-4 border-b border-gray-200">
+                      <a href="#" className="text-purple-700 underline">{row.title}</a>
+                    </td>
+                    <td className="py-2 px-4 border-b border-gray-200">{row.author}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+        
+      {currentContent === cripticContent && (
+      <div className="bg-white rounded shadow p-8 max-w-3xl mx-auto mb-12">
+        <h2 className="text-2xl font-bold mb-6">{currentContent.title}</h2>
+        <div className="space-y-4 mb-8">
+          {currentContent.paragraphs.map((p: string, idx: number) => (
+            <p key={idx} className="text-gray-700 text-base leading-relaxed">{p}</p>
+          ))}
+        </div>
+        
+        {currentContent.sections.map((section: any, idx: number) => (
+          <div key={idx} className="mb-10">
+            {section.title && (
+              <h3 className="text-lg font-bold text-center text-gray-800 mb-4">{section.title}</h3>
+            )}
+            {section.image && (
+              <div className="flex justify-center mb-4">
+                <img src={section.image.src} alt={section.image.alt} className="w-40 h-40 object-contain" />
+              </div>
+            )}
+            {section.description && (
+              <p className="text-gray-700 text-base leading-relaxed">{section.description}</p>
+            )}
+          </div>
+        ))}
+        <div className="flex flex-col md:flex-row gap-4 mb-8 justify-center">
+          {currentContent.footer.buttons.map((btn: any, idx: number) => (
+            <a
+              key={idx}
+              href={btn.href}
+              className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700 transition text-center font-semibold"
+            >
+              {btn.text}
+            </a>
+          ))}
+        </div>
+        <div className="text-center mb-8">
+          <span className="font-bold">LEER MÁS...</span>
+          <div className="flex flex-col md:flex-row gap-4 justify-center mt-2">
+            {currentContent.footer.more.map((item: any, idx: number) => (
+              <a key={idx} href={item.href} className="text-gray-700 underline text-sm">{item.text}</a>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center gap-8 mb-8">
+          {currentContent.footer.logos.map((logo: any, idx: number) => (
+            <img key={idx} src={logo.src} alt={logo.alt} className="w-24 h-24 object-contain" />
+          ))}
+        </div>
+        <div className="text-center mb-4">
+          {currentContent.footer.masonry.map((item: any, idx: number) => (
+            <div key={idx}>
+              <a href={item.href} className="text-purple-700 underline text-sm">{item.text}</a>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mb-8">
+          <img src={currentContent.footer.masonicLogo.src} alt={currentContent.footer.masonicLogo.alt} className="w-24 h-24 object-contain" />
+        </div>
+      </div>
+    )}
 
         {currentContent === commanderyHistoryContent && (
           <div className="bg-white rounded shadow p-8 max-w-4xl mx-auto mb-12 flex flex-col md:flex-row items-center">
@@ -779,88 +991,96 @@ export default function PageRenderer() {
           </div>
         )}
 
-        {/* Renderizar secciones de organizaciones si existen */}
-        {currentContent.sections && (
-          <div className="space-y-12">
-            {currentContent.sections.map((section: SectionType, sectionIdx: number) => (
-              <div key={sectionIdx} className="text-center">
-                <h2 className="text-2xl font-bold text-gray-800 mb-8">
-                  {section.title}
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-                  {section.organizations.map((org: OrganizationType, orgIdx: number) => (
-                    <div key={orgIdx} className="flex flex-col items-center">
-                      <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mb-3">
-                        <span className="text-xs text-center text-gray-600">
-                          LOGO
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-700 text-center max-w-[120px] leading-tight">
-                        {org.name}
-                      </span>
+        {currentContent === royalArchContent && (
+          <div className="bg-white rounded shadow p-8 max-w-5xl mx-auto mb-12">
+            <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+              {currentContent.title}
+            </h1>
+            {/* Párrafos introductorios */}
+            <div className="space-y-4 mb-8 text-center">
+              {Array.isArray(currentContent.paragraphs) &&
+                currentContent.paragraphs.map((paragraph: string, idx: number) =>
+                  paragraph.trim() === "" ? <br key={idx} /> : (
+                    <p key={idx} className="text-gray-700 text-base leading-relaxed">{paragraph}</p>
+                  )
+                )
+              }
+            </div>
+            {/* Secciones de grados */}
+            <div className="space-y-12">
+              {Array.isArray(currentContent.sections) &&
+                currentContent.sections.map((section: any, idx: number) => (
+                  <div key={idx} className="flex flex-col md:flex-row items-center mb-8">
+                    <div className="flex-1 mb-4 md:mb-0 md:mr-8">
+                      <h2 className="text-xl font-bold text-gray-800 mb-2">{section.title}</h2>
+                      <p className="text-gray-700 text-base">{section.description}</p>
+                    </div>
+                    <div className="flex-1 flex justify-center">
+                      <img
+                        src={section.image.src}
+                        alt={section.image.alt}
+                        className="w-40 h-40 object-contain rounded shadow"
+                      />
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            {/* Footer de lecturas complementarias */}
+            {currentContent.footer && Array.isArray(currentContent.footer.items) && (
+              <div className="mt-12 text-center">
+                <h3 className="text-lg font-semibold mb-4">{currentContent.footer.title}</h3>
+                <div className="flex flex-wrap justify-center gap-8">
+                  {currentContent.footer.items.map((item: any, idx: number) => (
+                    <div key={idx} className="flex flex-col items-center">
+                      <img src={item.src} alt={item.alt} className="w-24 h-24 object-contain mb-2" />
+                      <span className="text-sm text-gray-700">{item.alt}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+            )}
           </div>
         )}
 
-        
-        {currentContent === royalArchContent && currentContent && (
-        <div className="bg-white rounded shadow p-8 max-w-4xl mx-auto mb-12">
-          <h1 className="text-3xl font-bold mb-6">{currentContent.title}</h1>
-          
-          {/* Solo renderiza si paragraphs existe y es un array */}
-          {currentContent.paragraphs && Array.isArray(currentContent.paragraphs) && currentContent.paragraphs.length > 0 && (
-            <div className="space-y-4 mb-8">
-              {currentContent.paragraphs.map((paragraph: string, idx: number) => (
-                <p key={idx} className="text-gray-700 text-lg leading-relaxed">{paragraph}</p>
-              ))}
-            </div>
-          )}
-          
-          {/* Solo renderiza si sections existe y es un array */}
-          {currentContent.sections && Array.isArray(currentContent.sections) && currentContent.sections.length > 0 && (
-            <>
-              {currentContent.sections.map((section: any, idx: number) => (
-                <div key={idx} className="mb-12">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">{section.title}</h2>
-                  <p className="text-gray-700 text-lg leading-relaxed mb-4">{section.description}</p>
-                  {section.image && (
-                    <div className="flex justify-center">
-                      <img src={section.image.src} alt={section.image.alt} className="w-40 h-40 object-contain" />
-                    </div>
-                  )}
+
+
+        {/* Renderizar secciones de organizaciones si existen */}
+        {currentContent.sections &&
+          Array.isArray(currentContent.sections) &&
+          currentContent.sections.length > 0 &&
+          // Solo renderiza si la primera sección tiene 'organizations'
+          currentContent.sections[0].organizations
+          ? (
+            <div className="space-y-12">
+              {currentContent.sections.map((section: SectionType, sectionIdx: number) => (
+                <div key={sectionIdx} className="text-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-8">
+                    {section.title}
+                  </h2>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+                    {section.organizations.map((org: OrganizationType, orgIdx: number) => (
+                      <div key={orgIdx} className="flex flex-col items-center">
+                        <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mb-3">
+                          <span className="text-xs text-center text-gray-600">
+                            LOGO
+                          </span>
+                        </div>
+                        <span className="text-sm text-gray-700 text-center max-w-[120px] leading-tight">
+                          {org.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
-            </>
-          )}
-          
-          {/* Solo renderiza si footer y footer.items existen */}
-          {currentContent.footer && currentContent.footer.items && Array.isArray(currentContent.footer.items) && currentContent.footer.items.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">{currentContent.footer.title}</h2>
-              <div className="flex justify-center gap-6">
-                {currentContent.footer.items.map((item: any, idx: number) => (
-                  <img key={idx} src={item.src} alt={item.alt} className="w-24 h-24 object-contain" />
-                ))}
-              </div>
             </div>
-          )}
-        </div>
-      )}
+          ) : null
+        }
 
-        {/* Footer especial para organizaciones */}
-        {currentContent.footer && (
-          <div className="text-center mt-16">
-            <div className="w-32 h-32 bg-gray-100 border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center mx-auto">
-              <span className="text-xs text-center text-gray-600">
-                SÍMBOLO<br/>MASÓNICO
-              </span>
-            </div>
-          </div>
-        )}
+
+
+        
 
         {/* Further Reading Section */}
         {currentContent.furtherReading && (

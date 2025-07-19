@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isExcludedPage = ["/login-intranet", "/dashboard-intranet", "/admin","/login-admin"].includes(pathname); // Condición para login y dashboard
+  const isExcludedPage = ["/login-intranet", "/dashboard-intranet", "/admin","/login-admin"].includes(pathname);
 
   return (
     <html lang="en">
