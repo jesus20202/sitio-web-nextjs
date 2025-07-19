@@ -28,6 +28,10 @@ import { chapterConnectContent } from '@/content/chapter/connect';
 import { chapterEducationContent } from '@/content/chapter/education';
 import { biografiaSumoSacerdoteContent } from '@/content/chapter/biografia';
 import { cripticContent } from '@/content/council/criptic';
+import dynamic from 'next/dynamic';
+
+
+const LocatorMap = dynamic(() => import('@/components/ui/LocatorMap'), { ssr: false });
 
 
 interface ImageType {
@@ -928,68 +932,70 @@ export default function PageRenderer() {
 
         {/* Renderizar visual de locator si existe */}
         {currentContent.locator && (
-          <div className="bg-white rounded shadow p-6 mb-12">
-            <div className="flex flex-col md:flex-row gap-8">
-              {/* Filtros */}
-              <div className="flex-1 mb-6 md:mb-0">
-                <form className="flex flex-wrap gap-4 items-end">
-                  <div>
-                    <label className="block text-gray-700 mb-1">{currentContent.locator.filters.cityOrZip}</label>
-                    <input type="text" className="border border-gray-300 rounded px-3 py-2 w-full" placeholder="Ej: Los Angeles, 90001" />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-1">{currentContent.locator.filters.radius}</label>
-                    <select className="border border-gray-300 rounded px-3 py-2 w-full">
-                      {currentContent.locator.filters.radiusOptions.map((opt: string) => (
-                        <option key={opt}>{opt}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-1">{currentContent.locator.filters.results}</label>
-                    <select className="border border-gray-300 rounded px-3 py-2 w-full">
-                      {currentContent.locator.filters.resultsOptions.map((opt: string) => (
-                        <option key={opt}>{opt}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-1">{currentContent.locator.filters.category}</label>
-                    <select className="border border-gray-300 rounded px-3 py-2 w-full">
-                      {currentContent.locator.filters.categoryOptions.map((opt: string) => (
-                        <option key={opt}>{opt}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded ml-2">
-                    {currentContent.locator.filters.search}
-                  </button>
-                </form>
-                {/* Resultados de ejemplo */}
-                <div className="mt-6">
-                  {currentContent.locator.exampleResults.map((res: ResultType, idx: number) => (
-                    <div key={idx} className="mb-4">
-                      <a href="#" className="text-purple-800 underline font-semibold">{res.name}</a>
-                      {res.address && <div className="text-sm text-gray-700">{res.address}</div>}
-                      {res.meeting && <div className="text-sm text-gray-700">{res.meeting}</div>}
-                      {res.moreInfo && <div className="text-sm"><a href="#" className="underline">{res.moreInfo}</a></div>}
-                      {res.distance && <div className="text-xs text-gray-500">{res.distance}</div>}
-                      {res.directions && <div className="text-xs"><a href="#" className="underline">{res.directions}</a></div>}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {/* Mapa visual */}
-              <div className="flex-1 flex justify-center items-center min-w-[320px]">
-                <img
-                  src={currentContent.map.image}
-                  alt={currentContent.map.alt}
-                  className="rounded border border-gray-300 w-full max-w-md"
-                />
-              </div>
-            </div>
+  <div className="bg-white rounded shadow p-6 mb-12">
+    <h2 className="text-2xl font-bold mb-4">{currentContent.title}</h2>
+    <div className="mb-4 text-gray-700">{currentContent.paragraphs?.[0]}</div>
+    <div className="flex flex-col md:flex-row gap-8">
+      {/* Filtros */}
+      <div className="flex-1 mb-6 md:mb-0">
+        <form className="flex flex-wrap gap-4 items-end">
+          <div>
+            <label className="block text-gray-700 mb-1">{currentContent.locator.filters.cityOrZip}</label>
+            <input type="text" className="border border-gray-300 rounded px-3 py-2 w-full" placeholder="Ej: Lima, 15001" />
           </div>
-        )}
+          <div>
+            <label className="block text-gray-700 mb-1">{currentContent.locator.filters.radius}</label>
+            <select className="border border-gray-300 rounded px-3 py-2 w-full">
+              {currentContent.locator.filters.radiusOptions.map((opt: string) => (
+                <option key={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1">{currentContent.locator.filters.results}</label>
+            <select className="border border-gray-300 rounded px-3 py-2 w-full">
+              {currentContent.locator.filters.resultsOptions.map((opt: string) => (
+                <option key={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1">{currentContent.locator.filters.category}</label>
+            <select className="border border-gray-300 rounded px-3 py-2 w-full">
+              {currentContent.locator.filters.categoryOptions.map((opt: string) => (
+                <option key={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+          <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded ml-2">
+            {currentContent.locator.filters.search}
+          </button>
+        </form>
+        {/* Resultados de ejemplo */}
+        <div className="mt-6">
+          {currentContent.locator.exampleResults.map((res: ResultType, idx: number) => (
+            <div key={idx} className="mb-4">
+              <a href="#" className="text-purple-800 underline font-semibold">{res.name}</a>
+              {res.address && <div className="text-sm text-gray-700">{res.address}</div>}
+              {res.meeting && <div className="text-sm text-gray-700">{res.meeting}</div>}
+              {res.moreInfo && <div className="text-sm"><a href="#" className="underline">{res.moreInfo}</a></div>}
+              {res.distance && <div className="text-xs text-gray-500">{res.distance}</div>}
+              {res.directions && <div className="text-xs"><a href="#" className="underline">{res.directions}</a></div>}
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Mapa animado con marcadores */}
+      <div className="flex-1 flex justify-center items-center min-w-[320px]">
+        <LocatorMap
+          center={currentContent.map.center}
+          zoom={currentContent.map.zoom}
+          locations={currentContent.locator.exampleResults}
+        />
+      </div>
+    </div>
+  </div>
+)}
 
         {currentContent === royalArchContent && (
           <div className="bg-white rounded shadow p-8 max-w-5xl mx-auto mb-12">

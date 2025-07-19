@@ -15,26 +15,32 @@ export const locatorContent = {
       search: "Buscar"
     },
     exampleResults: [
-      {
-        name: "Bakersfield Council No. 28 Cryptic Masons",
-        address: "562 James Rd\nKernville, CA 93238",
-        meeting: "Reuniones: Segundo viernes de febrero, mayo, octubre y noviembre, 6:30 PM",
-        moreInfo: "Más información",
-        distance: "101.8 mi",
-        directions: "Direcciones"
-      },
-      {
-        name: "Kern River Chapter No. 162 Royal Arch",
-        address: "",
-        meeting: "",
-        moreInfo: "",
-        distance: "",
-        directions: ""
-      }
-    ]
+    {
+      name: "Capítulo Lima No. 1",
+      address: "Av. Arequipa 1234, Lima, Perú",
+      meeting: "Reuniones: Primer viernes de cada mes, 7:00 PM",
+      moreInfo: "Más información",
+      distance: "2.1 km",
+      directions: "Direcciones",
+      lat: -12.0464,
+      lng: -77.0428
+    },
+    {
+      name: "Consejo Arequipa No. 2",
+      address: "Calle Mercaderes 567, Arequipa, Perú",
+      meeting: "Reuniones: Segundo jueves de cada mes, 7:30 PM",
+      moreInfo: "Más información",
+      distance: "1000 km",
+      directions: "Direcciones",
+      lat: -16.4090,
+      lng: -71.5375
+    }
+  ]
   },
   map: {
     image: "/mapa.png",
-    alt: "Mapa de ubicaciones Rito York de Perú"
+    alt: "Mapa de ubicaciones Rito York de Perú",
+    center: [-9.19, -75.0152], // Centro de Perú
+    zoom: 5
   }
 };
