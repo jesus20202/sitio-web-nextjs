@@ -1,4 +1,7 @@
+'use client';
+
 import type { Metadata } from "next";
+import { usePathname } from "next/navigation";
 import { SectionProvider } from "@/context/SectionContext";
 import { TopBar } from "@/components/layout/TopBar";
 import { MainNavigation } from "@/components/layout/MainNavigation";
@@ -8,31 +11,29 @@ import ContentWithDynamicPage from "@/components/ContentWithDynamicPage";
 import "./globals.css";
 
 
-
-export const metadata: Metadata = {
-  title: "Grand York Rite of California",
-  description: "Further Light in Masonry - Discover the California York Rite of Freemasonry",
-};
-
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isExcludedPage = ["/login-intranet", "/dashboard-intranet", "/admin","/login-admin"].includes(pathname); // Condición para login y dashboard
+
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <SectionProvider>
-          <TopBar />
-          <MainNavigation />
-          <SecondaryNavigation />
+          {!isExcludedPage && <TopBar />}
+          {!isExcludedPage && <MainNavigation />}
+          {!isExcludedPage && <SecondaryNavigation />}
           <main className="flex-grow">
-            <ContentWithDynamicPage>
-              {children}
-            </ContentWithDynamicPage>
+            {!isExcludedPage ? (
+              <ContentWithDynamicPage>{children}</ContentWithDynamicPage>
+            ) : (
+              children
+            )}
           </main>
-          <Footer />
+          {!isExcludedPage && <Footer />}
         </SectionProvider>
       </body>
     </html>

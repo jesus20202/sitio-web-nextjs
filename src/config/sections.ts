@@ -23,7 +23,7 @@ export const sectionConfigs: Record<string, SectionConfig> = {
     name: 'Grand York Rite',
     logo: {
       image: '/images/logos/logo4.png',
-      title: 'Gran Rito de York',
+      title: 'Rito York Perú',
       
     },
     navigation: [
@@ -31,9 +31,9 @@ export const sectionConfigs: Record<string, SectionConfig> = {
         label: '¿QUE ES EL RITO DE YORK?',
         items: [
           { label: '¿QUE ES EL RITO DE YORK?', href: '/about/overview' },
-          { label: 'HISTORIA', href: '/about/royal-arch' },
+          //{ label: 'HISTORIA', href: '/about/royal-arch' },
           { label: 'CONÉCTATE CON NOSOTROS', href: '/about/cryptic' },
-          { label: 'LOCALIZADOR DE ORGANIZACIONES', href: '/about/knights-templar' },
+          //{ label: 'LOCALIZADOR DE ORGANIZACIONES', href: '/about/knights-templar' },
           { label: 'OTRAS ORGANIACIONES MAZONICAS', href: '/about/requirements' }
         ]
       },
@@ -76,50 +76,46 @@ export const sectionConfigs: Record<string, SectionConfig> = {
     id: 'chapter',
     name: 'Grand Chapter',
     logo: {
-      image: 'chapter-logo.png',
-      title: 'Grand Chapter',
-      subtitle: 'Royal Arch Masons'
+      image: '/images/logos/logo1.png',
+      title: 'Real Arco'
     },
     navigation: [
       {
-        label: 'CAPÍTULOS',
+        label: '¿QUE ES EL REAL ARCO?',
         items: [
-          { label: 'Encontrar un Capítulo', href: '/chapter/find' },
-          { label: 'Lista de Capítulos', href: '/chapter/list' },
-          { label: 'Nuevos Capítulos', href: '/chapter/new' }
+          { label: '¿QUE ES EL REAL ARCO?', href: '/chapter/question' },
+          { label: 'CONÉCTATE CON UN CAPÍTULO', href: '/chapter/connect' },
+          //{ label: 'LOCALIZADOR DE CAPÍTULOS', href: '/chapter/locator' },
+          {label: 'EDUCACIÓN DEL REAL ARCO',href:'/chapter/education'}
         ]
       },
       {
-        label: 'GRADOS',
+        label: 'LIDERAZGO',
         items: [
-          { label: 'Mark Master Mason', href: '/chapter/degrees/mark-master' },
-          { label: 'Past Master', href: '/chapter/degrees/past-master' },
-          { label: 'Most Excellent Master', href: '/chapter/degrees/excellent-master' },
-          { label: 'Royal Arch Mason', href: '/chapter/degrees/royal-arch' }
+          { label: 'BIOGRAFIA DEL GRAN SUMO SACERDOTE', href: '/chapter/degrees/biografia' },
+          { label: 'GRANDES OFICIALES', href: '/chapter/degrees/oficiales' },
+          { label: 'OFICIALES DEL DEPARTAMENTO', href: '/chapter/degrees/departamento' },
+          { label: 'COMITÉS', href: '/chapter/degrees/comites' },
+          {label:'CARIDAD',href:'/chapter/degress/caridad'}
         ]
       },
       {
-        label: 'OFICIALES',
-        items: [
-          { label: 'Gran Sumo Sacerdote', href: '/chapter/officers/high-priest' },
-          { label: 'Oficiales del Gran Capítulo', href: '/chapter/officers/grand' },
-          { label: 'Oficiales de Capítulo', href: '/chapter/officers/chapter' }
-        ]
+        label: 'UBICACIONES',
+        
       },
       {
         label: 'EVENTOS',
         items: [
-          { label: 'Convocación Anual', href: '/chapter/events/convocation' },
-          { label: 'Ceremonias de Grado', href: '/chapter/events/degrees' }
+          { label: 'EVENTOS', href: '/chapter/events/convocation' },
+          { label: 'SOLICCITUD DE EVENTOS', href: '/chapter/events/degrees' }
         ]
       },
       {
-        label: 'RECURSOS',
-        items: [
-          { label: 'Rituales', href: '/chapter/resources/rituals' },
-          { label: 'Formularios', href: '/chapter/resources/forms' },
-          { label: 'Documentos', href: '/chapter/resources/documents' }
-        ]
+        label: 'NOTICIA'
+      },
+      {
+        label:'CONTACTO'
+
       }
     ]
   },
@@ -127,47 +123,44 @@ export const sectionConfigs: Record<string, SectionConfig> = {
     id: 'council',
     name: 'Grand Council',
     logo: {
-      image: 'council-logo.png',
-      title: 'Grand Council',
-      subtitle: 'Cryptic Masons'
+      image: '/images/logos/logo2.png',
+      title: 'Masones Crípticos'
     },
     navigation: [
       {
-        label: 'CONSEJOS',
+        label: '¿POR QUÉ CRYPTIC?',
         items: [
-          { label: 'Encontrar un Consejo', href: '/council/find' },
-          { label: 'Lista de Consejos', href: '/council/list' },
-          { label: 'Nuevos Consejos', href: '/council/new' }
+          { label: '¿POR QUÉ CRYPTIC?', href: '/council/find' },
+          { label: 'CONÉCTESE CON UN CONSEJO', href: '/council/list' },
+          //{ label: 'LOCALIZADOR DE CONSEJOS', href: '/council/new' },
+          { label: 'EDUCACIÓN CRÍPTICA', href: '/council/new' }
         ]
       },
       {
-        label: 'GRADOS CRÍPTICOS',
+        label: 'LIDERAZGO',
         items: [
-          { label: 'Royal Master', href: '/council/degrees/royal-master' },
-          { label: 'Select Master', href: '/council/degrees/select-master' },
-          { label: 'Super Excellent Master', href: '/council/degrees/super-excellent' }
+          { label: 'BIOGRAFÍA DEL GRAN MAESTRO', href: '/council/degrees/royal-master' },
+          { label: 'GRANDES OFICIALES', href: '/council/degrees/select-master' },
+          { label: 'OFICIALES DEL DEPARTAMENTO', href: '/council/degrees/super-excellent' },
+          { label: 'COMITÉS', href: '/council/degrees/super-excellent' },
+          { label: 'CARIDAD', href: '/council/degrees/super-excellent' },
+          { label: 'EX GRANDES OFICIALES', href: '/council/degrees/super-excellent' }
         ]
       },
       {
-        label: 'OFICIALES',
-        items: [
-          { label: 'Gran Maestro Ilustre', href: '/council/officers/illustrious-master' },
-          { label: 'Oficiales del Gran Consejo', href: '/council/officers/grand' },
-          { label: 'Oficiales de Consejo', href: '/council/officers/council' }
-        ]
+        label: 'UBICACIÓNES'
       },
       {
         label: 'EVENTOS',
         items: [
-          { label: 'Asamblea Anual', href: '/council/events/assembly' },
-          { label: 'Ceremonias de Grado', href: '/council/events/degrees' }
+          { label: 'EVENTOS', href: '/council/events/assembly' },
+          { label: 'FORMULARIO DE SOLICITUD DE EVENTO', href: '/council/events/degrees' }
         ]
       },
       {
-        label: 'RECURSOS',
+        label: 'NOTICIA',
         items: [
-          { label: 'Rituales Crípticos', href: '/council/resources/rituals' },
-          { label: 'Historia Críptica', href: '/council/resources/history' }
+          { label: 'ARCHIVO DE SWORD&TROWEL', href: '/council/resources/rituals' }
         ]
       }
     ]
@@ -176,49 +169,44 @@ export const sectionConfigs: Record<string, SectionConfig> = {
     id: 'commandery',
     name: 'Grand Commandery',
     logo: {
-      image: 'commandery-logo.png',
-      title: 'Grand Commandery',
-      subtitle: 'Knights Templar'
+      image: '/images/logos/logo3.png',
+      title: 'Caballeros Templarios'
     },
     navigation: [
       {
-        label: 'COMANDANCIAS',
+        label: '¿QUE ES CABALLLEROS TEMPLARIOS?',
         items: [
-          { label: 'Encontrar una Comandancia', href: '/commandery/find' },
-          { label: 'Lista de Comandancias', href: '/commandery/list' },
-          { label: 'Nuevas Comandancias', href: '/commandery/new' }
+          { label: '¿QUE ES CABALLLEROS TEMPLARIOS?', href: '/commandery/find' },
+          { label: 'CONECTATE CON UNA COMANDANCIA', href: '/commandery/list' },
+          //{ label: 'LOCALIZADOR DE COMANDANCIAS', href: '/commandery/new' }
         ]
       },
       {
-        label: 'ÓRDENES',
+        label: 'LIDERAZGO',
         items: [
-          { label: 'Orden de la Cruz Roja', href: '/commandery/orders/red-cross' },
-          { label: 'Orden de Malta', href: '/commandery/orders/malta' },
-          { label: 'Orden del Temple', href: '/commandery/orders/temple' }
+          { label: 'BIOGRAFÍA DEL GRAN COMANDADOR', href: '/commandery/orders/red-cross' },
+          { label: 'GRANDES OFICIALES', href: '/commandery/orders/malta' },
+          { label: 'OFICIALES DE DEPARTAMENTO', href: '/commandery/orders/temple' },
+          { label: 'CÓMITES', href: '/commandery/orders/temple' },
+          { label: 'CARIDAD', href: '/commandery/orders/temple' },
+          { label: 'EX GRANDES OFICIALES', href: '/commandery/orders/temple' },
         ]
       },
       {
-        label: 'OFICIALES',
-        items: [
-          { label: 'Gran Comandante', href: '/commandery/officers/grand-commander' },
-          { label: 'Oficiales de la Gran Comandancia', href: '/commandery/officers/grand' },
-          { label: 'Oficiales de Comandancia', href: '/commandery/officers/commandery' }
-        ]
+        label: 'UBICACIONES',
+        
       },
       {
         label: 'EVENTOS',
         items: [
-          { label: 'Conclave Anual', href: '/commandery/events/conclave' },
-          { label: 'Ceremonias de Orden', href: '/commandery/events/orders' },
-          { label: 'Desfiles Templarios', href: '/commandery/events/parades' }
+          { label: 'EVENTOS', href: '/commandery/events/conclave' },
+          { label: 'FORMULARIO DE SOLICITUD DEL EVENTO', href: '/commandery/events/orders' }
         ]
       },
       {
-        label: 'TRADICIÓN',
+        label: 'NOTICIA',
         items: [
-          { label: 'Historia Templaria', href: '/commandery/tradition/history' },
-          { label: 'Símbolos y Regalia', href: '/commandery/tradition/symbols' },
-          { label: 'Código Caballeresco', href: '/commandery/tradition/code' }
+          { label: 'REVISTA DE CABALLEROS TEMPLARIOS', href: '/commandery/tradition/history' }
         ]
       }
     ]
@@ -227,9 +215,8 @@ export const sectionConfigs: Record<string, SectionConfig> = {
     id: 'history',
     name: 'History',
     logo: {
-      image: 'history-logo.png',
-      title: 'Masonic History',
-      subtitle: 'of California'
+      image: '/images/logos/logo4.png',
+      title: 'Historia de Rito York Perú',
     },
     navigation: [
       {

@@ -5,15 +5,19 @@ export default function GrandChapterPage() {
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-full">
         {/* Sección Hero */}
-        <div className="relative mb-0">
-          <div className="w-full h-80 overflow-hidden">
-            <img
-              src="/hero-chapter.jpg"
-              alt="Imagen Hero de Masones del Real Arco"
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/50">
+        <div
+          className="relative h-[500px] flex items-center justify-center text-center overflow-hidden"
+          style={{
+            backgroundImage: 'url("/images/heroes/next-image.jpeg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center bottom',
+            backgroundColor: '#000'
+          }}
+        >
+          {/* Overlay oscuro para mejor legibilidad */}
+          <div className="absolute inset-0 bg-black/50 z-5"></div>
+          {/* Contenido */}
+          <div className="relative z-10 w-full flex flex-col items-center justify-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg tracking-wide">
               ¿ENCONTRARÁS LA PALABRA VERDADERA?
             </h1>

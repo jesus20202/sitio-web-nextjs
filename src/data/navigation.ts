@@ -4,7 +4,7 @@ export const mainNavigation = [
   { id: 'council', label: 'GRAN CONSEJO', href: '/grand-council' },
   { id: 'commandery', label: 'GRAN COMANDANCIA', href: '/grand-commandery' },
   { id: 'history', label: 'HISTORIA', href: '/history' },
-  { id: 'sessions', label: 'GRANDES SESIONES 2025', href: '/grand-sessions-2025' }
+  { id: 'sessions', label: 'INTRANET', href: '/login-intranet' }
 ];
 
 export const secondaryNavigation = [
